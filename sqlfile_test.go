@@ -12,7 +12,7 @@ import (
 )
 
 var (
-	db *sql.DB
+	db IDatabase
 )
 
 func newMockDB(t *testing.T) (*sql.DB, sqlmock.Sqlmock) {

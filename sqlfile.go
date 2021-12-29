@@ -69,8 +69,13 @@ func (s *SqlFile) Directory(dir string) error {
 	return nil
 }
 
+// IDatabase is an interface expects to implement Begin()
+type IDatabase interface {
+	Begin() (*sql.Tx, error)	
+}
+
 // Exec execute SQL statements written int the specified sql file
-func (s *SqlFile) Exec(db *sql.DB) (res []sql.Result, err error) {
+func (s *SqlFile) Exec(db IDatabase) (res []sql.Result, err error) {
 	tx, err := db.Begin()
 	if err != nil {
 		return res, err
